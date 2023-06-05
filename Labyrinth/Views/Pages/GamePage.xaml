@@ -6,7 +6,8 @@
       xmlns:vm="clr-namespace:Labyrinth.ViewModels"
       xmlns:cnv="clr-namespace:Labyrinth.Converters"
       mc:Ignorable="d"
-      Focusable="True">
+      Focusable="True"
+      Loaded="GamePage_Loaded">
 
     <Page.Resources>
         <vm:GamePageViewModel x:Key="gpvm"/>

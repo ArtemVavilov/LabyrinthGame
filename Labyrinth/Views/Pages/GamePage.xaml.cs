@@ -23,7 +23,6 @@ namespace Labyrinth.Views.Pages
         public GamePage()
         {
             InitializeComponent();
-            Loaded += GamePage_Loaded;
         }
         private void GamePage_Loaded(object sender, RoutedEventArgs e)
         {
