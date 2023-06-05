@@ -1,0 +1,53 @@
+﻿<Page x:Class="Labyrinth.Views.Pages.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Labyrinth.ViewModels"
+      xmlns:cnv="clr-namespace:Labyrinth.Converters"
+      mc:Ignorable="d"
+      Focusable="True">
+
+    <Page.Resources>
+        <vm:GamePageViewModel x:Key="gpvm"/>
+        <cnv:CharArrayToObservableCollectionConverter x:Key="ArrayToCollectionConverter"/>
+        <cnv:CharToImageConverter x:Key="CharToImageConverter" />
+        <DataTemplate x:Key="BlockTemplate">
+            <Border Width="50" Height="50">
+                <Image Source="{Binding Converter={StaticResource CharToImageConverter}}" />
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="MapTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource BlockTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.InputBindings>
+        <KeyBinding Key="Left" Command="{Binding MoveLeftCommand, Source={StaticResource gpvm}}" />
+        <KeyBinding Key="Up" Command="{Binding MoveUpCommand, Source={StaticResource gpvm}}" />
+        <KeyBinding Key="Right" Command="{Binding MoveRightCommand, Source={StaticResource gpvm}}" />
+        <KeyBinding Key="Down" Command="{Binding MoveDownCommand, Source={StaticResource gpvm}}" />
+        <KeyBinding Key="Esc" Command="{Binding RestartGame, Source={StaticResource gpvm}}" />
+    </Page.InputBindings>
+
+    <Grid DataContext="{StaticResource gpvm}">
+        <Border Margin="0,26,0,0">
+            <Border.Background>
+                <ImageBrush>
+                    <ImageBrush.ImageSource>
+                        <BitmapImage UriSource="../../Assets/Images/background.png"/>
+                    </ImageBrush.ImageSource>
+                </ImageBrush>
+            </Border.Background>
+            
+            <ItemsControl ItemsSource="{Binding Map, Converter={StaticResource ArrayToCollectionConverter}}" ItemTemplate="{DynamicResource MapTemplate}" />
+        </Border>
+        <Label VerticalAlignment="Top" Foreground="Red" FontWeight="Bold">Reload Level - ESC</Label>
+    </Grid>
+</Page>

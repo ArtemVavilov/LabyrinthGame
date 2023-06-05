@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Images\background.png" />
+    <None Remove="Assets\Images\empty.png" />
+    <None Remove="Assets\Images\player.png" />
+    <None Remove="Assets\Images\Star.png" />
+    <None Remove="Assets\Images\wall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\background.png" />
+    <Resource Include="Assets\Images\empty.png" />
+    <Resource Include="Assets\Images\player.png" />
+    <Resource Include="Assets\Images\star.png" />
+    <Resource Include="Assets\Images\wall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Maps\maps.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
